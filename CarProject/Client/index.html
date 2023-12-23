@@ -1,0 +1,238 @@
+<html>
+<head>
+	<title>Cars</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/search.css"/>
+	<script type="text/javascript" src="js/skripta.js"></script>
+</head>
+<body onload="loadPage()">
+	<header class="header">
+		<button id="homeButton" class="btnn btn-primary"  onclick="loadPage()"><i class="fa fa-home"></i> Home</button>
+		<p id="info"></p>
+		<button class="btn btn-primary" type="button" id="btnRegister" onclick="showRegistration()" >Registration</button>
+		<button class="btn btn-primary" type="button" id="lgn" onclick="showLogin()">Login</button>
+	</header>
+	<div class="container">
+		<div class="row mt-3">
+            <div id="logout" style="display:none" class="mt-1">
+				<br />
+				<p><button id="logoutButton" class="btn btn-warning" style="align-items: center;" onclick="logout()">Logout</button></p>
+				<p><button class="btn btn-primary" style="align-items: end;" onclick="postCar()">Create New Car</button></p>
+			</div>
+		</div>
+               <div>
+		<div id="loginFormDiv" style="display:none">
+			<h3 class="pri">User login</h3>
+			<form method="post" action="post/" id="loginForm" onsubmit="return loginUser()">
+				<p><label>Username: <input type="text" id="usernameLogin"></label></p>
+				<p><label>Password: <input type="password" id="passwordLogin"></label></p>
+				<br />
+				<p><button id="loginButton" class="btn btn-success">Login</button></p>
+				<p><input type="reset" value="Cancel" class="btn btn-warning" onclick="loadPage()" /></p>
+			</form>
+		</div>
+    </div>
+		<div id="registerFormDiv" style="display:none">
+			<h3 class="reg">User registration</h3>
+			<form method="post" action="post/" id="registerForm" onsubmit="return registerUser()">
+				<p><label>Username: <input type="text" id="usernameRegister"></label></p>
+				<p><label>Email: <input type="email" id="emailRegister"></label></p>
+				<p><label>Password: <input type="password" id="passwordRegister"></label></p>
+				<p><label>Confirm Password: <input type="password" id="confirmPasswordRegister"></label></p>
+				<br />
+				<p><button class="btn btn-success">Register</button></p>
+				<p><input type="reset" value="Cancel" class="btn btn-warning" onclick="loadPage()" /></p>
+			</form>
+		</div>
+		<br />
+		<br />
+
+		<div id="postCar" style="display:none">
+            <form method="post" id="carForm">
+                <div class="search-field">
+                    <label for="CarManufacturerId">Car Manufacturer</label>
+                    <select class="form-control" type="text" id="carManufacturerIdPost" name="CarManufacturerId"></select>
+                  </div>
+                <br/>
+                <div class="search-field">
+                    <label for="name">Name:</label>
+                    <input class="form-control" type="text" id="name" name="Name">
+                  </div>
+                <br />
+                <div class="search-field">
+                    <label for="Price">Price:</label>
+                    <input class="form-control" type="number" id="price" name="Price">
+                  </div>
+                <br />
+                <div class="search-field">
+                    <label for="ProductionYear">Year Production:</label>
+                    <select class="form-control" id="ProduYear" name="ProductionYear">
+                    </select>
+                  </div>
+                <br />
+                <div class="search-field">
+                    <label for="VehicleType">Type:</label>
+                    <select class="form-control" type="text" id="type" name="VehicleType">
+                      <option value=""></option>
+                      <option value="Cabriolet">Cabriolet</option>
+                       <option value="Limousine" selected="selected">Limousine</option>
+                    <option value="Coupe">Coupe</option>
+                    <option value="Hachback">Hachback</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Minivan">Minivan</option>
+                    </select>
+                  </div>
+                  <br />
+                  <div class="search-field">
+                    <label for="fuelPostCar">Fuel type:</label>
+                    <select class="form-control" id="fuelPostCar">
+                        <option value="Diesel">Diesel</option>
+                        <option value="Hybrid" selected="selected">Hybrid</option>
+                        <option value="Petrol">Petrol</option>
+                        <option value="Electric">Electric</option>
+                      </select>
+                  </div>
+                  <br />
+                  <div class="search-field">
+                    <label for="CubicCapacity">Cubic Capacity:</label>
+                    <input class="form-control" type="number" id="cubicCapacity" name="CubicCapacity">
+                  </div>
+                  <br />
+                  <div class="search-field">
+                    <label for="Power">Power:</label>
+                    <input class="form-control" type="number" id="power" name="Power">
+                  </div>
+                  <br />
+                  <div class="search-field">
+                    <label for="Color">Color:</label>
+                    <input class="form-control" type="text" id="color" name="Color">
+                  </div>
+                  <br />
+                  <div class="search-field">
+                    <label for="Mileage">Mileage:</label>
+                    <input class="form-control" type="number" id="mileage" name="Mileage">
+                  </div>
+                  <br/>
+                  <div class="search-field">
+                    <input type="checkbox" id="manual" checked name="Transmission" value="Manual" style="margin: 5px;" onchange="handleTransmissionCheckboxChange('manual')">
+                    <label for="manual">Manual</label>
+                    
+                    <input type="checkbox" id="automatic" name="Transmission" value="Automatic" style="margin-left: 5px;" onchange="handleTransmissionCheckboxChange('automatic')">
+                    <label for="automatic">Automatic</label>
+                </div>
+                <br />
+                <div class="search-field">
+                    <label for="Description">Description:</label>
+                    <textarea class="form-control" type="text" id="description" name="Description"></textarea>
+                  </div>
+                  <br/>
+                  <div class="search-field">
+                    <label id="imageLabel" for="Images">Images:</label>
+                    <input class="form-control" type="file" id="Images" name="Images" accept="image/*" multiple onchange="previewImages()">
+                 </div>
+                 <div id="imagePreview"></div>
+                  <br/>
+                <br />
+                <p><input type="submit" value="Submit" class="btn btn-success" style="margin-bottom: 1px;" onclick="return submitCarForm()" /> 
+                <input type="reset" value="Cancel" class="btn btn-warning" onclick="cancelCarForm()" /></p>
+            </form>
+        </div>
+
+
+		<div id="carFormDiv">
+		<form class="search-form" method="post" action="post/" id="carForm" onsubmit="return submitSearchCarForm()">
+			<div class="search-field">
+				<label for="carManufacturerId">Car Manufacturer</label>
+				<select class="form-control" type="text" id="carManufacturerId" name="carManufacturerId"></select>
+			  </div>
+
+			<div class="search-field">
+			  <label for="minPrice">Min Price</label>
+			  <input class="form-control" type="number" id="minPrice" name="minPrice" placeholder="from">
+			</div>
+		  
+			<div class="search-field">
+			  <label for="maxPrice">Max Price</label>
+			  <input class="form-control" type="number" id="maxPrice" name="maxPrice" placeholder="to">
+			</div>
+		  
+			<div class="search-field">
+				<label for="minProductionYear">Min Year Production</label>
+				<select class="form-control" id="minProductionYear" name="minProductionYear" placeholder="from">
+				</select>
+			  </div>
+			
+			  <div class="search-field">
+				<label for="maxProductionYear">Max Year Production</label>
+				<select class="form-control" id="maxProductionYear" name="maxProductionYear" placeholder="to">
+				</select>
+			  </div>
+		  
+			<div class="search-field">
+			  <label for="fuelList">Fuel type:</label>
+			  <select class="form-control" id="fuelList">
+				<option value="Hybrid">Hybrid</option>
+				<option value="Diesel" selected="selected">Diesel</option>
+				<option value="Petrol">Petrol</option>
+				<option value="Electric">Electric</option>
+			  </select>
+			</div>
+		  
+			<div class="search-field">
+			  <label for="minCubicCapacity">Min Cubic Capacity</label>
+			  <input class="form-control" type="number" id="minCubicCapacity" name="minCubicCapacity" placeholder="from">
+			</div>
+		  
+			<div class="search-field">
+			  <label for="maxCubicCapacity">Max Cubic Capacity</label>
+			  <input class="form-control" type="number" id="maxCubicCapacity" name="maxCubicCapacity" placeholder="to">
+			</div>
+		  
+			<div class="search-field">
+			  <label for="minPower">Min Power</label>
+			  <input class="form-control" type="number" id="minPower" name="minPower" placeholder="from">
+			</div>
+		  
+			<div class="search-field">
+			  <label for="maxPower">Max Power</label>
+			  <input class="form-control" type="number" id="maxPower" name="maxPower" placeholder="to">
+			</div>
+		  
+			<div class="search-field">
+			  <label for="minMileage">Min Mileage:</label>
+			  <input class="form-control" type="number" id="minMileage" name="minMileage" placeholder="from">
+			</div>
+		  
+			<div class="search-field">
+			  <label for="maxMileage">Max Mileage:</label>
+			  <input class="form-control" type="number" id="maxMileage" name="maxMileage" placeholder="to">
+			</div>
+		  
+			<div class="search-field">
+				<input type="checkbox" id="manual" name="transmission" value="Manual" style="margin: 5px;" onchange="handleTransmissionCheckboxChange('manual')">
+				<label for="manual">Manual</label>
+				
+				<input type="checkbox" id="automatic" name="transmission" value="Automatic" style="margin-left: 5px;" onchange="handleTransmissionCheckboxChange('automatic')">
+				<label for="automatic">Automatic</label>
+			</div>
+			<div class="search-field">
+				<label for="submit" style="visibility: hidden;">Placeholder</label>
+				<button id="clear"  class="btn btn-warning" type="reset" class="submit-button" onclick="cancelCarForm()">Clear Search</button>
+			  </div>
+			<div class="search-field">
+			  <label for="submit" style="visibility: hidden;">Placeholder</label>
+			  <button id="search" class="btn btn-primary" type="submit" class="submit-button">Search</button>
+			</div>
+		</form>
+	</div>
+		<div id="data">
+		</div>
+	</div>
+	<div>
+		<div id="detail">
+		</div>
+	</div>
+</body>
+</html>
