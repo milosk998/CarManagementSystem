@@ -1,1 +1,1 @@
-# CarManagmentSystem
+This project is ideal for those who have a big fleet of vehicles. It is designed to help the data entry, data deleting, data updating, as well as adding and deleting vehicles photos. The server is designed in C# programme language which uses JWT authentication and it also uses Entity Framework for new entries and for manipulating data base entries, etc. The user interface is SPA designed by combining html, css and javascript. Fetch request is used to supply data from the server.
