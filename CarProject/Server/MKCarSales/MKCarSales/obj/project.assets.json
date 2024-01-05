@@ -3299,11 +3299,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Acer\\Desktop\\CarManagmentSystem\\CarProject\\Server\\MKCarSales\\MKCarSales\\MKCarSales.csproj",
+      "projectUniqueName": "C:\\Users\\Acer\\Desktop\\CarManagementSystem\\CarProject\\Server\\MKCarSales\\MKCarSales\\MKCarSales.csproj",
       "projectName": "MKCarSales",
-      "projectPath": "C:\\Users\\Acer\\Desktop\\CarManagmentSystem\\CarProject\\Server\\MKCarSales\\MKCarSales\\MKCarSales.csproj",
+      "projectPath": "C:\\Users\\Acer\\Desktop\\CarManagementSystem\\CarProject\\Server\\MKCarSales\\MKCarSales\\MKCarSales.csproj",
       "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Acer\\Desktop\\CarManagmentSystem\\CarProject\\Server\\MKCarSales\\MKCarSales\\obj\\",
+      "outputPath": "C:\\Users\\Acer\\Desktop\\CarManagementSystem\\CarProject\\Server\\MKCarSales\\MKCarSales\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config",

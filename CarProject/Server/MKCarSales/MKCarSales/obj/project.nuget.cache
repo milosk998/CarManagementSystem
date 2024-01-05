@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZbDk2DBp/n9DfuAFkTTDo/ygcuP7KSyonI/fTYnKWk8silT1IG3n/h9QrWQLv61fjeCPAlj1IFSk5sjXUu6LGQ==",
+  "dgSpecHash": "irJctym5vPsUkWnWFPa4MHDspmNdDXptpL8myvwuLVxx2X+7iM2e2qC2o1EIyRH/yM34sR7ha5XoIs2vUaE14A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Acer\\Desktop\\CarManagmentSystem\\CarProject\\Server\\MKCarSales\\MKCarSales\\MKCarSales.csproj",
+  "projectFilePath": "C:\\Users\\Acer\\Desktop\\CarManagementSystem\\CarProject\\Server\\MKCarSales\\MKCarSales\\MKCarSales.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Acer\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Acer\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
