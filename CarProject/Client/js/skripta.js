@@ -2,6 +2,7 @@ var host = "https://localhost:";
 var port = "7021/";
 var CarEndpoint = "api/Car/";
 var CarManufacturerEndpoint = "api/CarManufacturer/";
+var ImageEndpoint = "api/Image/"
 var loginEndpoint = "api/authentication/login";
 var registerEndpoint = "api/authentication/register";
 var filterCar = "api/filter";
@@ -197,7 +198,20 @@ function setCar(data) {
         container.appendChild(carButton);
     }
 }
-
+function getCar(car){
+	var requestUrl = host + port + CarEndpoint + car.id;
+	console.log("URL zahteva: " + requestUrl);
+	fetch(requestUrl)
+		.then((response) => {
+			if (response.status === 200) {
+				response.json().then(setCarDetail);
+			} else {
+				console.log("Error occured with code " + response.status);
+				showError();
+			}
+		})
+		.catch(error => console.log(error));
+}
 function createCarButton(carData) {
     console.log(carData);
     var carButton = document.createElement("button");
@@ -253,11 +267,29 @@ function setCarDetailWithImages(carData) {
     var images = carData.images;
 
     images.forEach((image, index) => {
+		var containerDiv = document.createElement("div");
+		containerDiv.style.position = "relative";
+		containerDiv.style.margin = "5px";
+
         var img = document.createElement("img");
         img.src = host + port + image.relativePath;
         img.className = "detail-image";
         img.alt = "Car Image";
-        imagesContainer.appendChild(img);
+
+		containerDiv.appendChild(img);
+
+		if(jwt_token){
+		var deleteImgButton = document.createElement("button");
+		deleteImgButton.className = "delete-img";
+		deleteImgButton.textContent = "DELETE";
+		deleteImgButton.addEventListener("click", function() {
+			deleteImgCar(image,carData);
+		});
+		containerDiv.appendChild(deleteImgButton);
+		}
+		
+		imagesContainer.appendChild(containerDiv);
+
 
         if ((index + 1) % 3 === 0) {
             imagesContainer.appendChild(document.createElement("br"));
@@ -312,6 +344,29 @@ function setCarDetailWithImages(carData) {
 		updateButton.style.height = "50px";
 		detailsContainer.appendChild(updateButton);
 	} 
+	if(jwt_token){
+		var addImgButton = document.createElement("button");
+		addImgButton.className = "btn btn-success";
+		addImgButton.textContent = "Add New Photo";
+
+		var filesInput = document.createElement("input");
+		filesInput.type = "file";
+		filesInput.style.display = "none";
+
+		addImgButton.addEventListener("click", function(){
+			filesInput.click();
+		})
+
+		filesInput.addEventListener("change", function(){
+			var selectedFile = filesInput.files[0];
+			if(selectedFile){
+			addImgCar(selectedFile, carData);
+			}
+		})
+		addImgButton.style.height = "50px";
+		detailsContainer.appendChild(addImgButton);
+		detailsContainer.appendChild(filesInput);
+	}
 
     carDetailContainer.appendChild(detailsContainer);
     container.appendChild(carDetailContainer);
@@ -379,6 +434,56 @@ function deleteCar(id) {
 		})
 		.catch(error => console.log(error));
 };
+function deleteImgCar(data,carData){
+
+	var deleteImgId = data.id;
+
+	var url = host + port + ImageEndpoint + deleteImgId.toString();
+	var headers = { 'Contect-Type': 'application/json' };
+	if(jwt_token){
+		headers.Authorization = 'Bearer' + jwt_token;
+	}
+
+	fetch(url, {method: "DELETE", headers: headers})
+		.then((response) => {
+			if(response.status == 204){
+				console.log("Successful action");
+				getCar(carData);
+			}else{
+				console.log("Error occured with code " + response.status);
+				alert("Error occured!");
+			}
+		})
+		.catch(error => console.log(error));
+};
+function addImgCar(data, carData){
+	var carId = carData.id;
+
+	var url = host + port + ImageEndpoint;
+
+	var formData = new FormData();
+	
+	formData.append("Image", data);
+	formData.append("carId", carId);
+
+	var headers = {};
+	if(jwt_token){
+		headers.Authorization = 'Bearer' + jwt_token;
+	}
+	fetch(url, { method: "POST" , headers: headers, body: formData })
+  	.then((response) => {
+  			if (response.status === 200 || response.status === 201) {
+  			console.log("Successful action");
+  			formAction = "Create";
+			getCar(carData);
+  		} else {
+  			console.log("Error occured with code " + response.status);
+  			alert("Greska prilikom dodavanja!");
+  }
+  })
+  .catch(error => console.log(error));
+  return false;
+}
 function updateCar(id) {
 	
 	var editId = id;

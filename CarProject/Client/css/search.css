@@ -10,7 +10,6 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .detail-image {
   max-width: 300px;
   max-height: 300px;
@@ -18,6 +17,20 @@
   height: 100%;
   margin: 5px;
   cursor: pointer;
+  border-radius: 2px;
+}
+.delete-img{
+  position: absolute;
+  left: 80%;
+  top: 90%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  height: 25px;
+  width: 60px;
+  cursor: pointer;
+  background-color: red;
+  color: antiquewhite;
+  border-radius: 2px;
 }
 #info{
   margin-right: 50%;
